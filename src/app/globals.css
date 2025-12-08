@@ -1,26 +1,31 @@
 @import "tailwindcss";
 
+@theme {
+    --color-background: #070F2B; /* deep navy */
+    --color-surface:    #1B1A55; /* indigo surface */
+    --color-primary:    #9290C3; /* light lavender (primary text/accent) */
+    --color-secondary:  #535C91; /* muted lavender-blue (secondary text) */
+    --color-accent:     #535C91; /* interactive accents */
+    --color-border:     #1B1A55; /* subtle border matching surface */
+}
+
+/* Apply dark mode colors directly */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --bg: var(--color-background);
+    --surface: var(--color-surface);
+    --text-primary: var(--color-primary);
+    --text-secondary: var(--color-secondary);
+    --accent: var(--color-accent);
+    --border: var(--color-border);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+    box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Base styles */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+	background-color: var(--bg);
+	color: var(--text-primary);
+	transition: background-color 0.3s ease, color 0.3s ease;
 }
