@@ -14,14 +14,14 @@ export default function RantDetailPage() {
 
 	if (error) {
 		return (
-			<div className="min-h-screen bg-linear-to-br from-purple-50 to-pink-50 p-4">
+			<div className="min-h-screen bg-linear-to-br from-background via-surface/30 to-background p-4">
 				<div className="max-w-2xl mx-auto text-center py-12">
-					<h1 className="text-2xl font-bold text-gray-800 mb-4">
+					<h1 className="text-2xl font-bold text-primary mb-4">
 						Rant not found
 					</h1>
 					<Link
 						href="/"
-						className="text-purple-600 hover:text-purple-800"
+						className="text-primary hover:text-accent transition-colors"
 					>
 						← Back to Feed
 					</Link>
@@ -31,7 +31,7 @@ export default function RantDetailPage() {
 	}
 
 	return (
-		<div className="min-h-screen bg-linear-to-br from-purple-50 to-pink-50 p-4">
+		<div className="min-h-screen bg-linear-to-br from-background via-surface/30 to-background p-4">
 			<div className="max-w-2xl mx-auto">
 				{/* Header */}
 				<motion.header
@@ -42,7 +42,7 @@ export default function RantDetailPage() {
 				>
 					<Link
 						href="/"
-						className="inline-block text-purple-600 hover:text-purple-800 mb-4"
+						className="inline-block text-primary hover:text-accent mb-4 transition-colors"
 					>
 						← Back to Feed
 					</Link>
@@ -53,25 +53,43 @@ export default function RantDetailPage() {
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ delay: 0.3, duration: 0.6 }}
-					className="bg-white rounded-lg p-8 shadow-sm"
+					className="bg-surface/60 backdrop-blur-sm rounded-xl p-8 border border-accent/20"
 				>
 					{isLoading ? (
 						<>
 							<div className="flex items-center space-x-2 mb-4">
-								<Skeleton circle width={32} height={32} />
-								<Skeleton width={100} />
+								<Skeleton 
+									baseColor="#535C91"
+									highlightColor="#9290C3"
+									circle 
+									width={32} 
+									height={32} 
+								/>
+								<Skeleton 
+									baseColor="#535C91"
+									highlightColor="#9290C3"
+									width={100} 
+								/>
 							</div>
-							<Skeleton height={200} />
+							<Skeleton 
+								baseColor="#535C91"
+								highlightColor="#9290C3"
+								height={200} 
+							/>
 							<div className="mt-4">
-								<Skeleton width={50} />
+								<Skeleton 
+									baseColor="#535C91"
+									highlightColor="#9290C3"
+									width={50} 
+								/>
 							</div>
 						</>
 					) : post ? (
 						<>
 							<div className="flex items-start justify-between mb-6">
 								<div className="flex items-center space-x-3">
-									<div className="w-10 h-10 bg-purple-200 rounded-full flex items-center justify-center">
-										<span className="text-purple-600 font-semibold">
+									<div className="w-10 h-10 bg-linear-to-br from-accent/40 to-primary/40 rounded-full flex items-center justify-center border border-accent/50">
+										<span className="text-primary font-semibold">
 											{post.author_name
 												? post.author_name
 														.charAt(0)
@@ -80,10 +98,10 @@ export default function RantDetailPage() {
 										</span>
 									</div>
 									<div>
-										<h2 className="text-lg font-semibold text-gray-800">
+										<h2 className="text-lg font-semibold text-primary">
 											{post.author_name || 'Anonymous'}
 										</h2>
-										<p className="text-gray-500 text-sm">
+										<p className="text-secondary text-sm">
 											{new Date(
 												post.created_at
 											).toLocaleDateString('en-US', {
@@ -97,21 +115,21 @@ export default function RantDetailPage() {
 									</div>
 								</div>
 								{post.is_featured && (
-									<span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm font-medium">
+									<span className="bg-linear-to-r from-accent/20 to-primary/20 text-primary px-3 py-1 rounded-full text-sm font-medium border border-accent/30">
 										Featured
 									</span>
 								)}
 							</div>
 
-							<div className="prose prose-gray max-w-none mb-6">
-								<p className="text-gray-800 leading-relaxed whitespace-pre-wrap text-lg">
+							<div className="prose prose-invert max-w-none mb-6">
+								<p className="text-primary leading-relaxed whitespace-pre-wrap text-lg">
 									{post.content}
 								</p>
 							</div>
 
-							<div className="flex items-center justify-between pt-4 border-t border-gray-100">
+							<div className="flex items-center justify-between pt-4 border-t border-accent/10">
 								<div className="flex items-center space-x-2">
-									<button className="flex items-center space-x-1 text-gray-600 hover:text-red-500 transition-colors">
+									<button className="flex items-center space-x-1 text-secondary hover:text-primary transition-colors">
 										<span>❤️</span>
 										<span>{post.likes_count}</span>
 									</button>
@@ -126,7 +144,7 @@ export default function RantDetailPage() {
 											url: window.location.href,
 										});
 									}}
-									className="text-gray-500 hover:text-gray-700 transition-colors"
+									className="text-secondary hover:text-primary transition-colors"
 								>
 									Share
 								</button>
